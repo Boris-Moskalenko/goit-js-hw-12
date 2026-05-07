@@ -68,7 +68,10 @@ form.addEventListener("submit", async event => {
 
 loadMoreBtn.addEventListener("click", async () => {
   page += 1;
+
+  hideLoadMoreButton();
   showLoader();
+  
 
   try {
     const data = await getImagesByQuery(query, page);
@@ -88,11 +91,13 @@ loadMoreBtn.addEventListener("click", async () => {
     const totalPages = Math.ceil(data.totalHits / 15);
 
     if (page >= totalPages) {
-      hideLoadMoreButton();
-      iziToast.info({
-        message: "We're sorry, but you've reached the end of search results.",
-      });
-          }
+  hideLoadMoreButton();
+  iziToast.info({
+    message: "We're sorry, but you've reached the end of search results.",
+  });
+} else {
+  showLoadMoreButton();
+}
   } catch (error) {
     iziToast.error({
       message: "Something went wrong!",
