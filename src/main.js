@@ -92,7 +92,7 @@ loadMoreBtn.addEventListener("click", async () => {
       iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
       });
-    }
+          }
   } catch (error) {
     iziToast.error({
       message: "Something went wrong!",
